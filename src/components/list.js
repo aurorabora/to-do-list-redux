@@ -3,16 +3,27 @@ import { connect } from 'react-redux';
 import { getListData } from '../actions';
 
 class List extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.getListData();
     }
-    render (){
-        return(
-            <div>
-            To Do List will go here
-            </div>
-        )
+    render() {
+        const { listData } = this.props;
+        const listItems = listData.map((item, index) => {
+            return <li className="collection-item" key={item._id}>{item.title}</li>
+        });
+
+        return (
+        <ul className="collection">
+            {listItems}
+        </ul>
+        );
     }
 }
 
-export default connect(null, {getListData: getListData }) (List);
+    function mapStateToProps(state) {
+        return {
+            listData: state.list.all
+    }
+}
+
+export default connect(mapStateToProps, { getListData: getListData })(List);
