@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getListData } from '../actions';
 
@@ -13,9 +14,17 @@ class List extends Component {
         });
 
         return (
-        <ul className="collection">
+            <div>
+                <h1 className="center"> To Do List </h1>
+                <div className="row right-align">
+                <Link className="btn purple lighten-2" to="/add-item">Add item</Link>
+                </div>
+
+            <ul className="collection">
             {listItems}
-        </ul>
+            </ul>
+        </div>
+        
         );
     }
 }
