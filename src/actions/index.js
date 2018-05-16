@@ -13,11 +13,20 @@ export function getListData() {
     }
 }
 
-export function addToDoItem(item){
+export function addToDoItem(item) {
     const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
 
-    return{
-        type:types.ADD_ITEM,
-        payload:response
+    return {
+        type: types.ADD_ITEM,
+        payload: response
+    }
+}
+
+export function getSingleItem(id) {
+    const response = axios.get(`${BASE_URL}/todos/${id + API_KEY}`)
+        ;
+    return {
+        type: types.GET_SINGLE_ITEM,
+        payload: response
     }
 }
